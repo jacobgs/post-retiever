@@ -12,8 +12,14 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+  common_lang_version='3.11'
+}
+
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "org.apache.commons:commons-lang3:${common_lang_version}"
+	
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
