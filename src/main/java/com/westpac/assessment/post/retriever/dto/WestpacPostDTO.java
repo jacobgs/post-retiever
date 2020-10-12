@@ -1,17 +1,19 @@
 package com.westpac.assessment.post.retriever.dto;
 
-import java.util.List;
 import java.util.Objects;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+@JsonDeserialize(builder = WestpacPostDTO.Builder.class)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class WestpacPostDTO {
   private String userId;
   private Long postId;
   private String postTitle;
   private String postBody;
-  private List<WestpacCommentDTO> comments;
 
   // jackson uses the default constructor
   private WestpacPostDTO() {}
@@ -21,7 +23,6 @@ public class WestpacPostDTO {
     postId = builder.postId;
     postTitle = builder.postTitle;
     postBody = builder.postBody;
-    comments = builder.comments;
   }
 
 
@@ -41,9 +42,6 @@ public class WestpacPostDTO {
     return postBody;
   }
 
-  public List<WestpacCommentDTO> getComments() {
-    return comments;
-  }
 
   @Override
   public boolean equals(Object obj) {
@@ -56,17 +54,17 @@ public class WestpacPostDTO {
     WestpacPostDTO other = (WestpacPostDTO) obj;
     return new EqualsBuilder().append(userId, other.userId).append(postId, other.postId)
         .append(postTitle, other.postTitle).append(postBody, other.postBody)
-        .append(comments, other.comments).build();
+        .build();
   }
 
   @Override
   public int hashCode() {
-    return new HashCodeBuilder().append(userId).append(postId).append(postTitle).append(postBody).append(comments).build();
+    return new HashCodeBuilder().append(userId).append(postId).append(postTitle).append(postBody).build();
   }
 
   @Override
   public String toString() {
-    return new ToStringBuilder(this).append(userId).append(postId).append(postTitle).append(postBody).append(comments).build();
+    return new ToStringBuilder(this).append("userId", userId).append("postId", postId).append("postTitle", postTitle).append("postBody", postBody).build();
   }
 
   public static final class Builder {
@@ -75,7 +73,6 @@ public class WestpacPostDTO {
     private Long postId;
     private String postTitle;
     private String postBody;
-    private List<WestpacCommentDTO> comments;
 
     public Builder() {}
 
@@ -86,7 +83,6 @@ public class WestpacPostDTO {
         postId = original.postId;
         postTitle = original.postTitle;
         postBody = original.postBody;
-        comments = original.comments;
       }
     }
 
@@ -107,11 +103,6 @@ public class WestpacPostDTO {
 
     public Builder withPostBody(String postBody) {
       this.postBody = postBody;
-      return this;
-    }
-
-    public Builder withComments(List<WestpacCommentDTO> comments) {
-      this.comments = comments;
       return this;
     }
 

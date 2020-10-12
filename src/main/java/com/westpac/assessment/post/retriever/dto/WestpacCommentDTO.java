@@ -4,7 +4,11 @@ import java.util.Objects;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+@JsonDeserialize(builder = WestpacCommentDTO.Builder.class)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class WestpacCommentDTO {
 
   private Long postId;

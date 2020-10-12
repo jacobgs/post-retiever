@@ -1,0 +1,25 @@
+jsonPlaceHolderServerBaseUrl: https://jsonplaceholder.typicode.com
+
+resilience4j.circuitbreaker:
+    instances:
+        jsonPlaceholder:
+            registerHealthIndicator: true
+            slidingWindowSize: 10
+            permittedNumberOfCallsInHalfOpenState: 5
+            slidingWindowType: TIME_BASED
+            minimumNumberOfCalls: 20
+            waitDurationInOpenState: 50s
+            failureRateThreshold: 50
+            eventConsumerBufferSize: 10
+            
+resilience4j.retry:
+    instances:
+        jsonPlaceholder:
+            maxRetryAttempts: 3
+            waitDuration: 10s
+            enableExponentialBackoff: true
+            exponentialBackoffMultiplier: 2
+            retryExceptions:
+                - org.springframework.web.client.HttpServerErrorException
+                - java.io.IOException
+                - org.springframework.web.reactive.function.client.WebClientException
