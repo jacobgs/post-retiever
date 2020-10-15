@@ -2,6 +2,7 @@ plugins {
 	id 'org.springframework.boot' version '2.3.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
+	id 'application'
 }
 
 group = 'com.westpac.assessment'
@@ -37,3 +38,6 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+// Define the main class for the application
+mainClassName = 'com.westpac.assessment.post.retriever.PostRetrieverApplication'
+
