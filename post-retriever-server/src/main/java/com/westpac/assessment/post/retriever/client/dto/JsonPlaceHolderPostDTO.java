@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 public class JsonPlaceHolderPostDTO {
-  private String userId;
+  private Long userId;
   private Long id;
   private String title;
   private String body;
@@ -21,7 +21,7 @@ public class JsonPlaceHolderPostDTO {
     body = builder.body;
   }
 
-  public String getUserId() {
+  public Long getUserId() {
     return userId;
   }
 
@@ -63,7 +63,7 @@ public class JsonPlaceHolderPostDTO {
 
   public static final class Builder {
 
-    private String userId;
+    private Long userId;
     private Long id;
     private String title;
     private String body;
@@ -80,7 +80,7 @@ public class JsonPlaceHolderPostDTO {
       }
     }
 
-    public Builder withUserId(String userId) {
+    public Builder withUserId(Long userId) {
       this.userId = userId;
       return this;
     }

@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 @JsonDeserialize(builder = WestpacPostDTO.Builder.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class WestpacPostDTO {
-  private String userId;
+  private Long userId;
   private Long postId;
   private String postTitle;
   private String postBody;
@@ -26,7 +26,7 @@ public class WestpacPostDTO {
   }
 
 
-  public String getUserId() {
+  public Long getUserId() {
     return userId;
   }
 
@@ -69,7 +69,7 @@ public class WestpacPostDTO {
 
   public static final class Builder {
 
-    private String userId;
+    private Long userId;
     private Long postId;
     private String postTitle;
     private String postBody;
@@ -86,7 +86,7 @@ public class WestpacPostDTO {
       }
     }
 
-    public Builder withUserId(String userId) {
+    public Builder withUserId(Long userId) {
       this.userId = userId;
       return this;
     }

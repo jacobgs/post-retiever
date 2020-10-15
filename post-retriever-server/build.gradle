@@ -15,6 +15,7 @@ repositories {
 ext {
   common_lang_version='3.11'
   resilience4j_version='1.6.1'
+  wiremock_version='2.27.2'
 }
 
 dependencies {
@@ -22,11 +23,15 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
     implementation "org.apache.commons:commons-lang3:${common_lang_version}"
     implementation "io.github.resilience4j:resilience4j-spring-boot2:${resilience4j_version}"
+    implementation "io.github.resilience4j:resilience4j-reactor:${resilience4j_version}"
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.13'
     
-	
+    
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
+    testImplementation "com.github.tomakehurst:wiremock:${wiremock_version}"
+	
 }
 
 test {

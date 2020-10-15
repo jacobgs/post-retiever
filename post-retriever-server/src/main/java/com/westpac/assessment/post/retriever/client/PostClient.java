@@ -10,8 +10,6 @@ import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import com.westpac.assessment.post.retriever.client.dto.JsonPlaceHolderPostDTO;
-import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import io.github.resilience4j.retry.annotation.Retry;
 import io.netty.channel.ChannelOption;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.handler.timeout.WriteTimeoutHandler;
@@ -36,8 +34,6 @@ public class PostClient {
         .build();
   }
 
-  @CircuitBreaker(name = "jsonPlaceholder")
-  @Retry(name = "jsonPlaceholder")
   public List<JsonPlaceHolderPostDTO> findAll() {
     return webClient.get()
         .uri("/posts")
@@ -46,8 +42,6 @@ public class PostClient {
         .block();
   }
 
-  @CircuitBreaker(name = "jsonPlaceholder")
-  @Retry(name = "jsonPlaceholder")
   public JsonPlaceHolderPostDTO getPostById(Long postId) {
     return webClient.get()
         .uri(String.format("/posts/%s", postId))
@@ -56,8 +50,6 @@ public class PostClient {
         .block();
   }
 
-  @CircuitBreaker(name = "jsonPlaceholder")
-  @Retry(name = "jsonPlaceholder")
   public List<JsonPlaceHolderPostDTO> findPostsByUserId(Long userId) {
     return webClient.get()
         .uri(String.format("/posts?userId=%s", userId))

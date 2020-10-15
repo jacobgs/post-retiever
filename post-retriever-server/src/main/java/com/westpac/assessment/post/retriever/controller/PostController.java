@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +28,7 @@ public class PostController {
   @Autowired
   private PostService service;
 
+  @CrossOrigin
   @RequestMapping(value = "/all", method = GET)
   public ResponseEntity<WestpacPostSearchResponseDTO> findAllWestpacPosts(@RequestParam("embed") Optional<String> embed) {
     LOG.info("Beginning to find all Westpac posts");
@@ -34,6 +36,7 @@ public class PostController {
     return new ResponseEntity<WestpacPostSearchResponseDTO>(allPosts, HttpStatus.OK);
   }
 
+  @CrossOrigin
   @RequestMapping(value = "/{id}", method = GET)
   public ResponseEntity<WestpacPostRetrieveResponseDTO> retrieveWestpacPost(@PathVariable("id") Long postId, @RequestParam("embed") Optional<String> embed) {
     if (Objects.isNull(postId)) {
@@ -45,6 +48,7 @@ public class PostController {
     return new ResponseEntity<WestpacPostRetrieveResponseDTO>(post, HttpStatus.OK);
   }
 
+  @CrossOrigin
   @RequestMapping(value = "/searches", method = POST)
   public ResponseEntity<WestpacPostSearchResponseDTO> searches(@RequestParam("userId") Long userId, @RequestParam("embed") Optional<String> embed) {
     if (Objects.isNull(userId)) {
