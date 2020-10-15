@@ -1,0 +1,4 @@
+jsonPlaceHolderServerBaseUrl: https://jsonplaceholder.typicode.com
+
+client.retry.count: 3
+client.retry.waitDuration: PT0.5s
