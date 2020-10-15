@@ -1,6 +1,10 @@
 # Purpose
 This project has been created by Jacob Han (j.gs.han@outlook.com) for delivering Westpac Online Assessment.
 
+# Prerequisite
+- Java 1.8
+- npm
+
 # Components
 ## post-retriever-server
 `post-retriever-server` is a Spring based RESTful server which retrieves posts from [SimpleJsonServer](https://jsonplaceholder.typicode.com/) and exposes the data through the following three endpoints;
